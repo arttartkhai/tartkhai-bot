@@ -8,6 +8,8 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noImplicitAny": false,
+    "outDir": "./dist",
+    "moduleResolution": "node",
     "paths": {
       "types/*": ["types/*"]
     }
