@@ -1,10 +1,10 @@
 import * as _ from 'lodash';
 interface ICommandResult {
-  command: string;
-  args: string[];
+  command?: string;
+  args?: string[];
 }
 
-export const extractCommand = (message: string): ICommandResult | undefined => {
+export const extractCommand = (message: string): ICommandResult => {
   // command with args
   const regex: RegExp = />(\w+)\s(.+)/;
   //TODO: and word is in command list
@@ -23,4 +23,6 @@ export const extractCommand = (message: string): ICommandResult | undefined => {
   if (_.startsWith(message, '>')) {
     return { command: message.replace('>', '').trim().toLowerCase(), args: [] };
   }
+
+  return {}
 };

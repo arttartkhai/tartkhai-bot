@@ -4,15 +4,15 @@ describe('extractCommand fn', () => {
   it('should return command with no args', () => {
     let input
 
-    input = '>price'
+    input = '>gfi'
     expect(extractCommand(input)).toEqual({
-      command: 'price',
+      command: 'gfi',
       args: [],
     })
 
-    input = '>price    '
+    input = '>gfi    '
     expect(extractCommand(input)).toEqual({
-      command: 'price',
+      command: 'gfi',
       args: [],
     })
   })
@@ -35,6 +35,6 @@ describe('extractCommand fn', () => {
   
   it('should return nothing', () => {
     let input = 'price'
-    expect(extractCommand(input)).toBeUndefined()
+    expect(extractCommand(input)).toEqual({})
   })
 })

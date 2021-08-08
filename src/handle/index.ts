@@ -21,5 +21,7 @@ export default async (event: WebhookEvent): Promise<MessageAPIResponseBase | und
   const response = processText(text);
 
   // Reply to the user.
-  await client.replyMessage(replyToken, response);
+  if(response) {
+      await client.replyMessage(replyToken, response);
+  }
 };
