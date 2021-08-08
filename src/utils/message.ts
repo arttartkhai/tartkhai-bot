@@ -7,7 +7,6 @@ interface ICommandResult {
 export const extractCommand = (message: string): ICommandResult => {
   // command with args
   const regex: RegExp = />(\w+)\s(.+)/;
-  //TODO: and word is in command list
   if (regex.test(message)) {
     const matchGroups = regex.exec(message);
     if (matchGroups) {
