@@ -11,7 +11,7 @@
     "outDir": "./dist",
     "moduleResolution": "node",
     "paths": {
-      "types/*": ["types/*"]
+      "types/*": ["types/*"],
     }
   },
   "exclude": ["node_modules"],
