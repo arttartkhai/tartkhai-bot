@@ -26,7 +26,7 @@ describe('extractCommand fn', () => {
       args: ['btc', 'eth'],
     })
 
-    input = '>price btc           eth'
+    input = '>price btc    ETH'
     expect(extractCommand(input)).toEqual({
       command: 'price',
       args: ['btc', 'eth'],

@@ -5,6 +5,7 @@ import example2 from 'templates/example2'
 import instruction from 'templates/instruction'
 import image from 'templates/image'
 import { extractCommand } from 'utils/message'
+import { priceCarousel } from 'templates/priceCard'
 
 export default (text: string): Message | Message[] | null => {
   const { command, args } = extractCommand(text)
@@ -13,7 +14,7 @@ export default (text: string): Message | Message[] | null => {
       case Commands.gfi:
         return image('https://alternative.me/crypto/fear-and-greed-index.png')
       case Commands.price:
-        return example2()
+        return priceCarousel()
       default:
         return [
           {
