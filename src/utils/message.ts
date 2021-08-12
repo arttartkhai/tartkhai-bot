@@ -10,21 +10,22 @@ export const extractCommand = (message: string): ICommandResult => {
   if (regex.test(message)) {
     const matchGroups = regex.exec(message)
     if (matchGroups) {
-      const command = matchGroups[1].toLowerCase()
+      const command = matchGroups[1].toUpperCase()
       const argsString = matchGroups[2]
       const args = argsString
         .split(' ')
         .filter((a) => !!a)
-        .map((a) => a.toLowerCase())
+        .map((a) => a.toUpperCase())
       return { command, args }
     }
   }
 
   // pure command
-  //TODO: and word is in command list
   if (_.startsWith(message, '>')) {
-    return { command: message.replace('>', '').trim().toLowerCase(), args: [] }
+    return { command: message.replace('>', '').trim().toUpperCase(), args: [] }
   }
 
   return {}
 }
+
+

@@ -6,13 +6,13 @@ describe('extractCommand fn', () => {
 
     input = '>gfi'
     expect(extractCommand(input)).toEqual({
-      command: 'gfi',
+      command: 'GFI',
       args: [],
     })
 
     input = '>gfi    '
     expect(extractCommand(input)).toEqual({
-      command: 'gfi',
+      command: 'GFI',
       args: [],
     })
   })
@@ -22,14 +22,14 @@ describe('extractCommand fn', () => {
     
     input = '>price btc eth'
     expect(extractCommand(input)).toEqual({
-      command: 'price',
-      args: ['btc', 'eth'],
+      command: 'PRICE',
+      args: ['BTC', 'ETH'],
     })
 
     input = '>price btc    ETH'
     expect(extractCommand(input)).toEqual({
-      command: 'price',
-      args: ['btc', 'eth'],
+      command: 'PRICE',
+      args: ['BTC', 'ETH'],
     })
   })
   

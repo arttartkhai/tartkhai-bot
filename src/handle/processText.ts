@@ -11,9 +11,9 @@ export default (text: string): Message | Message[] | null => {
   const { command, args } = extractCommand(text)
   if (command) {
     switch (Commands[command]) {
-      case Commands.gfi:
+      case Commands.GFI:
         return image('https://alternative.me/crypto/fear-and-greed-index.png')
-      case Commands.price:
+      case Commands.PRICE:
         return priceCarousel()
       default:
         return [
