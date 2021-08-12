@@ -2,6 +2,7 @@ import { Message } from '@line/bot-sdk'
 import { getLatestQuote, getMetadata } from 'services/api'
 import * as _ from 'lodash'
 import { createCustomPriceData } from 'utils/data'
+import { priceCarousel } from 'templates/priceCard'
 
 export const getPricesFlex = async (symbols: string[]): Promise<Message> => {
   if (!symbols.length) {
@@ -20,10 +21,7 @@ export const getPricesFlex = async (symbols: string[]): Promise<Message> => {
     const latestQuoteData = await getLatestQuote(symbols)
     if (latestQuoteData) {
       const customPriceData = symbols.map((symbol) => createCustomPriceData(metaData[symbol], latestQuoteData[symbol]))
-      return {
-        type: 'text',
-        text: customPriceData[0].price?.toString() || ''
-      }
+      return priceCarousel(customPriceData)
     }
   }
 

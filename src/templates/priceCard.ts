@@ -1,12 +1,12 @@
 //TODO: handle when unlimited supply,
 import { FlexBox, FlexBubble, FlexCarousel, FlexMessage } from '@line/bot-sdk'
-import { CustomCoinData } from 'types/template'
+import { CustomCoinData, PriceCardProp } from 'types/template'
 
 type CreateBox = (data: CustomCoinData) => FlexBox
 
 const isNegative = (value: string) => Number.parseFloat(value) < 0
-const getColor =  (value: string) => isNegative(value)? '#ef4949' : '#008000'
-const withArrowAndPercent =  (value: string) => isNegative(value)? `▼ ${value}%` : `▲ ${value}%`
+const getColor = (value: string) => (isNegative(value) ? '#ef4949' : '#008000')
+const withArrowAndPercent = (value: string) => (isNegative(value) ? `▼ ${value}%` : `▲ ${value}%`)
 
 const getHeader: CreateBox = (data) => {
   return {
@@ -28,7 +28,7 @@ const getHeader: CreateBox = (data) => {
               },
               {
                 type: 'span',
-                text: `   ${data.symbol}`,
+                text: ` (${data.symbol})`,
               },
             ],
             wrap: true,
@@ -38,7 +38,7 @@ const getHeader: CreateBox = (data) => {
           {
             type: 'text',
             text: `${data.price} $`,
-            color: getColor(data.percentChange_24h)
+            color: getColor(data.percentChange_24h),
           },
         ],
         flex: 3,
@@ -80,7 +80,7 @@ const getSupplyBox: CreateBox = (data) => {
             layout: 'vertical',
             contents: [],
             backgroundColor: '#0D8186',
-            width: '70%',
+            width: `${percentage}%`,
             height: '15px',
             alignItems: 'center',
             justifyContent: 'center',
@@ -132,6 +132,7 @@ const getPriceBox: CreateBox = (data) => {
             wrap: true,
             offsetStart: 'xl',
             weight: 'bold',
+            size: 'sm',
           },
         ],
         margin: 'sm',
@@ -148,10 +149,11 @@ const getPriceBox: CreateBox = (data) => {
           },
           {
             type: 'text',
-            text: `Market Cap ${data.marketCap} $`,
+            text: `Market Cap: ${data.marketCap} $`,
             wrap: true,
             offsetStart: 'xl',
             weight: 'bold',
+            size: 'sm',
           },
         ],
         margin: 'sm',
@@ -172,6 +174,7 @@ const getPriceBox: CreateBox = (data) => {
             wrap: true,
             offsetStart: 'xl',
             weight: 'bold',
+            size: 'sm',
           },
         ],
         margin: 'sm',
@@ -192,6 +195,7 @@ const getPriceBox: CreateBox = (data) => {
             wrap: true,
             offsetStart: 'xl',
             weight: 'bold',
+            size: 'sm',
           },
         ],
         margin: 'sm',
@@ -201,8 +205,8 @@ const getPriceBox: CreateBox = (data) => {
   }
 }
 
-const getPercentageBox : CreateBox= (data) => {
-  return  {
+const getPercentageBox: CreateBox = (data) => {
+  return {
     type: 'box',
     layout: 'vertical',
     contents: [
@@ -234,12 +238,14 @@ const getPercentageBox : CreateBox= (data) => {
                     type: 'text',
                     text: '1h:',
                     flex: 0,
+                    size: 'xs',
                   },
                   {
                     type: 'text',
                     text: withArrowAndPercent(data.percentChange_1h),
                     flex: 0,
                     color: getColor(data.percentChange_1h),
+                    size: 'xs',
                   },
                 ],
                 justifyContent: 'space-between',
@@ -253,12 +259,14 @@ const getPercentageBox : CreateBox= (data) => {
                     type: 'text',
                     text: '24h:',
                     flex: 0,
+                    size: 'xs',
                   },
                   {
                     type: 'text',
                     text: withArrowAndPercent(data.percentChange_24h),
                     flex: 0,
                     color: getColor(data.percentChange_24h),
+                    size: 'xs',
                   },
                 ],
                 justifyContent: 'space-between',
@@ -269,14 +277,16 @@ const getPercentageBox : CreateBox= (data) => {
                 contents: [
                   {
                     type: 'text',
-                    text: '30d:',
+                    text: '7d:',
                     flex: 0,
+                    size: 'xs',
                   },
                   {
                     type: 'text',
-                    text: withArrowAndPercent(data.percentChange_30d),
+                    text: withArrowAndPercent(data.percentChange_7d),
                     flex: 0,
-                    color: getColor(data.percentChange_30d),
+                    color: getColor(data.percentChange_7d),
+                    size: 'xs',
                   },
                 ],
                 justifyContent: 'space-between',
@@ -293,14 +303,16 @@ const getPercentageBox : CreateBox= (data) => {
                 contents: [
                   {
                     type: 'text',
-                    text: '60d:',
+                    text: '30d:',
                     flex: 0,
+                    size: 'xs',
                   },
                   {
                     type: 'text',
-                    text: withArrowAndPercent(data.percentChange_60d),
+                    text: withArrowAndPercent(data.percentChange_30d),
                     flex: 0,
-                    color: getColor(data.percentChange_60d),
+                    color: getColor(data.percentChange_30d),
+                    size: 'xs',
                   },
                 ],
                 justifyContent: 'space-between',
@@ -311,14 +323,16 @@ const getPercentageBox : CreateBox= (data) => {
                 contents: [
                   {
                     type: 'text',
-                    text: '7d:',
+                    text: '60d:',
                     flex: 0,
+                    size: 'xs',
                   },
                   {
                     type: 'text',
-                    text: withArrowAndPercent(data.percentChange_7d),
+                    text: withArrowAndPercent(data.percentChange_60d),
                     flex: 0,
-                    color: getColor(data.percentChange_7d),
+                    color: getColor(data.percentChange_60d),
+                    size: 'xs',
                   },
                 ],
                 justifyContent: 'space-between',
@@ -331,12 +345,14 @@ const getPercentageBox : CreateBox= (data) => {
                     type: 'text',
                     text: '90d:',
                     flex: 0,
+                    size: 'xs',
                   },
                   {
                     type: 'text',
                     text: withArrowAndPercent(data.percentChange_90d),
                     flex: 0,
                     color: getColor(data.percentChange_90d),
+                    size: 'xs',
                   },
                 ],
                 justifyContent: 'space-between',
@@ -359,28 +375,29 @@ export const priceCard = (data: CustomCoinData): FlexBubble => {
       type: 'box',
       layout: 'vertical',
       contents: [
-        {
-          type: 'box',
-          layout: 'vertical',
-          contents: [
-            {
-              type: 'box',
-              layout: 'vertical',
-              contents: [
-                {
-                  type: 'text',
-                  text: 'Bitcoin (BTC) is a cryptocurrency . Users are able to generate BTC through the process of mining. Bitcoin has a current supply of 18,783,500. The last known price of Bitcoin is 45,616.08914537 USD and is down -0.12 over the last 24 hours ...',
-                  wrap: true,
-                  size: 'xxs',
-                },
-              ],
-            },
-          ],
-        },
+        // {
+        //   type: 'box',
+        //   layout: 'vertical',
+        //   contents: [
+        //     {
+        //       type: 'box',
+        //       layout: 'vertical',
+        //       contents: [
+        //         {
+        //           type: 'text',
+        //           text: 'Bitcoin (BTC) is a cryptocurrency . Users are able to generate BTC through the process of mining. Bitcoin has a current supply of 18,783,500. The last known price of Bitcoin is 45,616.08914537 USD and is down -0.12 over the last 24 hours ...',
+        //           wrap: true,
+        //           size: 'xxs',
+        //         },
+        //       ],
+        //     },
+        //   ],
+        // },
         ...(data.maxSupply ? [getSupplyBox(data)] : []),
         ...[getPriceBox(data)],
-        ...[getPercentageBox(data)]
+        ...[getPercentageBox(data)],
       ],
+      paddingTop: 'none',
       paddingStart: 'lg',
       paddingEnd: 'lg',
     },
@@ -409,8 +426,14 @@ export const priceCard = (data: CustomCoinData): FlexBubble => {
   }
 }
 
-// export const priceCarousel = (): FlexMessage => ({
-//   type: 'flex',
-//   altText: 'price flex',
-//   contents: priceCard(),
-// })
+export const priceCarousel = (listData: PriceCardProp): FlexMessage => {
+  const cardBubble = listData.map((coinData) => priceCard(coinData))
+  return {
+    type: 'flex',
+    altText: 'price flex',
+    contents: {
+      type: 'carousel',
+      contents: cardBubble,
+    },
+  }
+}

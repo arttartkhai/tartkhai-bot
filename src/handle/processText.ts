@@ -8,7 +8,7 @@ import { extractCommand } from 'utils/message'
 import { priceCarousel } from 'templates/priceCard'
 import { getPricesFlex } from './command/getPricesFlex'
 
-export default async (text: string): Promise<Message | Message[] > => {
+export default async (text: string): Promise<Message | Message[]> => {
   const { command, args } = extractCommand(text)
   if (command && args) {
     switch (Commands[command]) {

@@ -1,17 +1,17 @@
 export interface IMetadata {
-  id?: number
-  name?: string
-  symbol?: string
-  category?: string
-  description?: string
-  slug?: string
-  logo?: string
+  id: number
+  name: string
+  symbol: string
+  category: string
+  description: string
+  slug: string
+  logo: string
   subreddit?: string
   notice?: string
   tags?: string[]
   'tag-names'?: string[]
   'tag-groups'?: any[]
-  urls?: Urls
+  urls: Urls
   platform?: Platform | null
   date_added?: Date
   twitter_username?: string
@@ -19,11 +19,11 @@ export interface IMetadata {
 }
 
 interface Platform {
-  id?: number
-  name?: string
-  symbol?: string
-  slug?: string
-  token_address?: string
+  id: number
+  name: string
+  symbol: string
+  slug: string
+  token_address: string
 }
 
 interface Urls {
@@ -39,16 +39,15 @@ interface Urls {
 }
 
 interface Status {
-  timestamp?: Date
-  // error_code: 0 is success
-  error_code?: number
-  error_message?: null
-  elapsed?: number
-  credit_count?: number
-  notice?: null
+  timestamp: Date
+  error_code: number
+  error_message: null
+  elapsed: number
+  credit_count: number
+  notice: null
 }
 
 export interface IMetadataResponse {
-  status?: Status
-  data?: { [key: string]: IMetadata }
+  status: Status
+  data: { [key: string]: IMetadata }
 }
