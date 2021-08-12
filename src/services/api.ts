@@ -1,21 +1,11 @@
 import axios from 'axios'
 import config from 'config/development'
-import { ILatestQuoteResponse } from 'type/services'
+import { ILatestQuote, ILatestQuoteResponse, IMetadataResponse } from 'types/services'
 
-// const testInstance = axios.create({
-//   baseURL: 'https://jsonplaceholder.typicode.com',
-//   headers: {
-//     'Content-Type': 'application/json; charset=utf-8',
-//     'cache-control': 'no-cache',
-//   },
-// })
-
-// export const getPosts = async (symbols: string[]) => {
-//   const response = await testInstance.get('/posts')
-// }
+const COINMARKETCAP_ENDPOINT = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency'
 
 const coinmarketcapInstance = axios.create({
-  baseURL: config.COINMARKETCAP_ENDPOINT,
+  baseURL: COINMARKETCAP_ENDPOINT,
   headers: {
     'Content-Type': 'application/json; charset=utf-8',
     'cache-control': 'no-cache',
@@ -23,16 +13,30 @@ const coinmarketcapInstance = axios.create({
   },
 })
 
-export const getLatestQuote = async (symbols: string[]): Promise<Record<string, any> | undefined> => {
-  const symbolsQs = symbols.join(',')
+export const getMetadata = async (symbols: string[]): Promise<IMetadataResponse | undefined> => {
+  const symbolsQS = symbols.join(',')
+  try {
+    const response = await coinmarketcapInstance.get<IMetadataResponse>('/info', {
+      params: {
+        symbol: symbolsQS,
+      },
+    })
+    return response.data
+  } catch (e) {
+    console.error(e)
+    return
+  }
+}
 
+export const getLatestQuote = async (symbols: string[]): Promise<Record<string, ILatestQuote> | undefined> => {
+  const symbolsQS = symbols.join(',')
   try {
     const response = await coinmarketcapInstance.get<ILatestQuoteResponse>('/quotes/latest', {
       params: {
-        symbol: symbolsQs,
+        symbol: symbolsQS,
       },
     })
-    const coinsQuote: Record<string, any> | undefined = response.data.data
+    const coinsQuote = response.data.data
     if (!coinsQuote) return
     return coinsQuote
   } catch (e) {

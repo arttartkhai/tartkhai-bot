@@ -6,15 +6,17 @@ import instruction from 'templates/instruction'
 import image from 'templates/image'
 import { extractCommand } from 'utils/message'
 import { priceCarousel } from 'templates/priceCard'
+import { getPricesFlex } from './command/getPricesFlex'
 
-export default (text: string): Message | Message[] | null => {
+export default async (text: string): Promise<Message | Message[] > => {
   const { command, args } = extractCommand(text)
-  if (command) {
+  if (command && args) {
     switch (Commands[command]) {
       case Commands.GFI:
         return image('https://alternative.me/crypto/fear-and-greed-index.png')
       case Commands.PRICE:
-        return priceCarousel()
+        // return priceCarousel()
+        return await getPricesFlex(args)
       default:
         return [
           {
@@ -25,5 +27,5 @@ export default (text: string): Message | Message[] | null => {
         ]
     }
   }
-  return null
+  return []
 }

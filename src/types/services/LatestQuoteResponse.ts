@@ -1,4 +1,4 @@
-interface Datum {
+export interface ILatestQuote {
   id?: number
   name?: string
   symbol?: string
@@ -42,5 +42,5 @@ interface Status {
 
 export interface ILatestQuoteResponse {
   status?: Status
-  data?: { [key: string]: Datum }
+  data?: { [key: string]: ILatestQuote }
 }

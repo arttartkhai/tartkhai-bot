@@ -1,4 +1,4 @@
-interface Datum {
+export interface IMetadata {
     id?:               number;
     name?:             string;
     symbol?:           string;
@@ -55,5 +55,5 @@ export enum ErrorCode {
 
 export interface IMetadataResponse {
     status?: Status;
-    data?:   { [key: string]: Datum };
+    data?:   { [key: string]: IMetadata };
 }
