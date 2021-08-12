@@ -1,6 +1,6 @@
 import axios from 'axios'
 import config from 'config/development'
-import { ILatestQuote, ILatestQuoteResponse, IMetadataResponse } from 'types/services'
+import { ILatestQuote, ILatestQuoteResponse, IMetadata, IMetadataResponse } from 'types/services'
 
 const COINMARKETCAP_ENDPOINT = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency'
 
@@ -13,7 +13,7 @@ const coinmarketcapInstance = axios.create({
   },
 })
 
-export const getMetadata = async (symbols: string[]): Promise<IMetadataResponse | undefined> => {
+export const getMetadata = async (symbols: string[]): Promise<Record<string, IMetadata> | undefined> => {
   const symbolsQS = symbols.join(',')
   try {
     const response = await coinmarketcapInstance.get<IMetadataResponse>('/info', {
@@ -21,7 +21,7 @@ export const getMetadata = async (symbols: string[]): Promise<IMetadataResponse 
         symbol: symbolsQS,
       },
     })
-    return response.data
+    return response.data.data
   } catch (e) {
     console.error(e)
     return
