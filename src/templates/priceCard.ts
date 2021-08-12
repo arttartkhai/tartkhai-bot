@@ -1,28 +1,208 @@
 //TODO: handle when unlimited supply,
+import { FlexBox, FlexBubble, FlexCarousel, FlexMessage } from '@line/bot-sdk'
+import { CustomCoinData } from 'types/template'
 
-import { FlexBubble, FlexMessage } from '@line/bot-sdk'
+type CreateBox = (data: CustomCoinData) => FlexBox
 
-const priceCard = (): FlexBubble => ({
-  type: 'bubble',
-  header: {
+const isNegative = (value: string) => Number.parseFloat(value) < 0
+const getColor =  (value: string) => isNegative(value)? '#ef4949' : '#008000'
+const withArrowAndPercent =  (value: string) => isNegative(value)? `▼ ${value}%` : `▲ ${value}%`
+
+const getHeader: CreateBox = (data) => {
+  return {
+    type: 'box',
+    layout: 'horizontal',
+    contents: [
+      {
+        type: 'box',
+        layout: 'vertical',
+        contents: [
+          {
+            type: 'text',
+            size: 'xl',
+            flex: 0,
+            contents: [
+              {
+                type: 'span',
+                text: data.name,
+              },
+              {
+                type: 'span',
+                text: `   ${data.symbol}`,
+              },
+            ],
+            wrap: true,
+            weight: 'bold',
+            text: '-',
+          },
+          {
+            type: 'text',
+            text: `${data.price} $`,
+            color: getColor(data.percentChange_24h)
+          },
+        ],
+        flex: 3,
+      },
+      {
+        type: 'image',
+        url: data.logo,
+        size: 'xs',
+        aspectMode: 'fit',
+        flex: 1,
+      },
+    ],
+    flex: 0,
+    spacing: 'none',
+    margin: 'none',
+    paddingBottom: 'none',
+  }
+}
+
+const getSupplyBox: CreateBox = (data) => {
+  const maxSupply = Number.parseInt(data.maxSupply ? data.maxSupply : '')
+  const totalSupply = Number.parseInt(data.totalSupply)
+  const percentage = Math.floor((totalSupply / maxSupply) * 100).toString()
+  return {
     type: 'box',
     layout: 'vertical',
     contents: [
       {
         type: 'text',
-        text: 'BTC (Bitcoin)',
-        size: 'xl',
-        weight: 'bold',
+        text: 'Supply',
+        align: 'center',
+      },
+      {
+        type: 'box',
+        layout: 'vertical',
+        contents: [
+          {
+            type: 'box',
+            layout: 'vertical',
+            contents: [],
+            backgroundColor: '#0D8186',
+            width: '70%',
+            height: '15px',
+            alignItems: 'center',
+            justifyContent: 'center',
+          },
+          {
+            type: 'box',
+            layout: 'vertical',
+            contents: [
+              {
+                type: 'text',
+                text: `${data.totalSupply} / ${data.maxSupply} (${percentage}%)`,
+                color: '#ffffff',
+                size: 'xs',
+                align: 'center',
+              },
+            ],
+            position: 'absolute',
+            height: '15px',
+            width: '100%',
+          },
+        ],
+        backgroundColor: '#9FD8E36E',
+        height: '15px',
+        margin: 'xs',
+        position: 'relative',
       },
     ],
-  },
-  hero: {
-    type: 'image',
-    url: 'https://cryptoicons.org/api/color/btc/100',
-    size: 'md',
-    aspectMode: 'fit',
-  },
-  body: {
+  }
+}
+
+const getPriceBox: CreateBox = (data) => {
+  return {
+    type: 'box',
+    layout: 'vertical',
+    contents: [
+      {
+        type: 'box',
+        layout: 'horizontal',
+        contents: [
+          {
+            type: 'text',
+            text: '•',
+            weight: 'bold',
+            flex: 0,
+          },
+          {
+            type: 'text',
+            text: `Rank: ${data.rank}`,
+            wrap: true,
+            offsetStart: 'xl',
+            weight: 'bold',
+          },
+        ],
+        margin: 'sm',
+      },
+      {
+        type: 'box',
+        layout: 'horizontal',
+        contents: [
+          {
+            type: 'text',
+            text: '•',
+            weight: 'bold',
+            flex: 0,
+          },
+          {
+            type: 'text',
+            text: `Market Cap ${data.marketCap} $`,
+            wrap: true,
+            offsetStart: 'xl',
+            weight: 'bold',
+          },
+        ],
+        margin: 'sm',
+      },
+      {
+        type: 'box',
+        layout: 'horizontal',
+        contents: [
+          {
+            type: 'text',
+            text: '•',
+            weight: 'bold',
+            flex: 0,
+          },
+          {
+            type: 'text',
+            text: `Price: ${data.price} $`,
+            wrap: true,
+            offsetStart: 'xl',
+            weight: 'bold',
+          },
+        ],
+        margin: 'sm',
+      },
+      {
+        type: 'box',
+        layout: 'horizontal',
+        contents: [
+          {
+            type: 'text',
+            text: '•',
+            weight: 'bold',
+            flex: 0,
+          },
+          {
+            type: 'text',
+            text: `Volume: ${data.volume}`,
+            wrap: true,
+            offsetStart: 'xl',
+            weight: 'bold',
+          },
+        ],
+        margin: 'sm',
+      },
+    ],
+    paddingTop: 'lg',
+  }
+}
+
+const getPercentageBox : CreateBox= (data) => {
+  return  {
     type: 'box',
     layout: 'vertical',
     contents: [
@@ -32,303 +212,205 @@ const priceCard = (): FlexBubble => ({
         contents: [
           {
             type: 'text',
-            text: 'Supply',
-            align: 'center',
+            text: 'Percentage Change',
+            weight: 'bold',
           },
+        ],
+        alignItems: 'center',
+      },
+      {
+        type: 'box',
+        layout: 'horizontal',
+        contents: [
           {
             type: 'box',
             layout: 'vertical',
             contents: [
               {
                 type: 'box',
-                layout: 'vertical',
+                layout: 'horizontal',
                 contents: [
                   {
                     type: 'text',
-                    text: '18,000,000 (76%)',
-                    color: '#ffffff',
-                    size: 'sm',
+                    text: '1h:',
+                    flex: 0,
+                  },
+                  {
+                    type: 'text',
+                    text: withArrowAndPercent(data.percentChange_1h),
+                    flex: 0,
+                    color: getColor(data.percentChange_1h),
                   },
                 ],
-                backgroundColor: '#0D8186',
-                width: '70%',
-                height: '20px',
+                justifyContent: 'space-between',
                 alignItems: 'center',
-                justifyContent: 'center',
+              },
+              {
+                type: 'box',
+                layout: 'horizontal',
+                contents: [
+                  {
+                    type: 'text',
+                    text: '24h:',
+                    flex: 0,
+                  },
+                  {
+                    type: 'text',
+                    text: withArrowAndPercent(data.percentChange_24h),
+                    flex: 0,
+                    color: getColor(data.percentChange_24h),
+                  },
+                ],
+                justifyContent: 'space-between',
+              },
+              {
+                type: 'box',
+                layout: 'horizontal',
+                contents: [
+                  {
+                    type: 'text',
+                    text: '30d:',
+                    flex: 0,
+                  },
+                  {
+                    type: 'text',
+                    text: withArrowAndPercent(data.percentChange_30d),
+                    flex: 0,
+                    color: getColor(data.percentChange_30d),
+                  },
+                ],
+                justifyContent: 'space-between',
               },
             ],
-            backgroundColor: '#9FD8E36E',
-            height: '20px',
-            margin: 'xs',
           },
-        ],
-      },
-      {
-        type: 'box',
-        layout: 'vertical',
-        contents: [
-          {
-            type: 'box',
-            layout: 'horizontal',
-            contents: [
-              {
-                type: 'text',
-                text: '•',
-                weight: 'bold',
-                flex: 0,
-              },
-              {
-                type: 'text',
-                text: 'Rank: 1',
-                wrap: true,
-                offsetStart: 'xl',
-                weight: 'bold',
-              },
-            ],
-            margin: 'sm',
-          },
-          {
-            type: 'box',
-            layout: 'horizontal',
-            contents: [
-              {
-                type: 'text',
-                text: '•',
-                weight: 'bold',
-                flex: 0,
-              },
-              {
-                type: 'text',
-                text: 'Rank: 1',
-                wrap: true,
-                offsetStart: 'xl',
-                weight: 'bold',
-              },
-            ],
-            margin: 'sm',
-          },
-          {
-            type: 'box',
-            layout: 'horizontal',
-            contents: [
-              {
-                type: 'text',
-                text: '•',
-                weight: 'bold',
-                flex: 0,
-              },
-              {
-                type: 'text',
-                text: 'Rank: 1',
-                wrap: true,
-                offsetStart: 'xl',
-                weight: 'bold',
-              },
-            ],
-            margin: 'sm',
-          },
-          {
-            type: 'box',
-            layout: 'horizontal',
-            contents: [
-              {
-                type: 'text',
-                text: '•',
-                weight: 'bold',
-                flex: 0,
-              },
-              {
-                type: 'text',
-                text: 'Rank: 1',
-                wrap: true,
-                offsetStart: 'xl',
-                weight: 'bold',
-              },
-            ],
-            margin: 'sm',
-          },
-        ],
-        paddingTop: 'lg',
-      },
-      {
-        type: 'box',
-        layout: 'vertical',
-        contents: [
           {
             type: 'box',
             layout: 'vertical',
             contents: [
               {
-                type: 'text',
-                text: 'Percentage Change',
-                weight: 'bold',
-              },
-            ],
-            alignItems: 'center',
-          },
-          {
-            type: 'box',
-            layout: 'horizontal',
-            contents: [
-              {
                 type: 'box',
-                layout: 'vertical',
+                layout: 'horizontal',
                 contents: [
                   {
-                    type: 'box',
-                    layout: 'horizontal',
-                    contents: [
-                      {
-                        type: 'text',
-                        text: '1h:',
-                        flex: 0,
-                      },
-                      {
-                        type: 'text',
-                        text: '0.69%',
-                        flex: 0,
-                        color: '#008000',
-                      },
-                    ],
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
+                    type: 'text',
+                    text: '60d:',
+                    flex: 0,
                   },
                   {
-                    type: 'box',
-                    layout: 'horizontal',
-                    contents: [
-                      {
-                        type: 'text',
-                        text: '1h:',
-                        flex: 0,
-                      },
-                      {
-                        type: 'text',
-                        text: '0.69%',
-                        flex: 0,
-                        color: '#008000',
-                      },
-                    ],
-                    justifyContent: 'space-between',
-                  },
-                  {
-                    type: 'box',
-                    layout: 'horizontal',
-                    contents: [
-                      {
-                        type: 'text',
-                        text: '1h:',
-                        flex: 0,
-                      },
-                      {
-                        type: 'text',
-                        text: '0.69%',
-                        flex: 0,
-                        color: '#008000',
-                      },
-                    ],
-                    justifyContent: 'space-between',
+                    type: 'text',
+                    text: withArrowAndPercent(data.percentChange_60d),
+                    flex: 0,
+                    color: getColor(data.percentChange_60d),
                   },
                 ],
+                justifyContent: 'space-between',
               },
               {
                 type: 'box',
-                layout: 'vertical',
+                layout: 'horizontal',
                 contents: [
                   {
-                    type: 'box',
-                    layout: 'horizontal',
-                    contents: [
-                      {
-                        type: 'text',
-                        text: '1h:',
-                        flex: 0,
-                      },
-                      {
-                        type: 'text',
-                        text: '0.69%',
-                        flex: 0,
-                        color: '#008000',
-                      },
-                    ],
-                    justifyContent: 'space-between',
+                    type: 'text',
+                    text: '7d:',
+                    flex: 0,
                   },
                   {
-                    type: 'box',
-                    layout: 'horizontal',
-                    contents: [
-                      {
-                        type: 'text',
-                        text: '1h:',
-                        flex: 0,
-                      },
-                      {
-                        type: 'text',
-                        text: '0.69%',
-                        flex: 0,
-                        color: '#008000',
-                      },
-                    ],
-                    justifyContent: 'space-between',
-                  },
-                  {
-                    type: 'box',
-                    layout: 'horizontal',
-                    contents: [
-                      {
-                        type: 'text',
-                        text: '1h:',
-                        flex: 0,
-                      },
-                      {
-                        type: 'text',
-                        text: '-0.69%',
-                        flex: 0,
-                        color: '#ef4949',
-                      },
-                    ],
-                    justifyContent: 'space-between',
+                    type: 'text',
+                    text: withArrowAndPercent(data.percentChange_7d),
+                    flex: 0,
+                    color: getColor(data.percentChange_7d),
                   },
                 ],
-                flex: 1,
+                justifyContent: 'space-between',
+              },
+              {
+                type: 'box',
+                layout: 'horizontal',
+                contents: [
+                  {
+                    type: 'text',
+                    text: '90d:',
+                    flex: 0,
+                  },
+                  {
+                    type: 'text',
+                    text: withArrowAndPercent(data.percentChange_90d),
+                    flex: 0,
+                    color: getColor(data.percentChange_90d),
+                  },
+                ],
+                justifyContent: 'space-between',
               },
             ],
-            spacing: 'xl',
+            flex: 1,
           },
         ],
-        paddingTop: 'xl',
+        spacing: 'xl',
       },
     ],
-  },
-  footer: {
-    type: 'box',
-    layout: 'vertical',
-    contents: [
-      {
-        type: 'button',
-        style: 'link',
-        height: 'sm',
-        action: {
-          type: 'uri',
-          label: 'News',
-          uri: 'https://linecorp.com',
+    paddingTop: 'xl',
+  }
+}
+export const priceCard = (data: CustomCoinData): FlexBubble => {
+  return {
+    type: 'bubble',
+    header: getHeader(data),
+    body: {
+      type: 'box',
+      layout: 'vertical',
+      contents: [
+        {
+          type: 'box',
+          layout: 'vertical',
+          contents: [
+            {
+              type: 'box',
+              layout: 'vertical',
+              contents: [
+                {
+                  type: 'text',
+                  text: 'Bitcoin (BTC) is a cryptocurrency . Users are able to generate BTC through the process of mining. Bitcoin has a current supply of 18,783,500. The last known price of Bitcoin is 45,616.08914537 USD and is down -0.12 over the last 24 hours ...',
+                  wrap: true,
+                  size: 'xxs',
+                },
+              ],
+            },
+          ],
         },
-      },
-      {
-        type: 'spacer',
-        size: 'sm',
-      },
-    ],
-    flex: 0,
-    backgroundColor: '#f8f2dd',
-  },
-})
+        ...(data.maxSupply ? [getSupplyBox(data)] : []),
+        ...[getPriceBox(data)],
+        ...[getPercentageBox(data)]
+      ],
+      paddingStart: 'lg',
+      paddingEnd: 'lg',
+    },
+    footer: {
+      type: 'box',
+      layout: 'vertical',
+      contents: [
+        {
+          type: 'button',
+          style: 'link',
+          height: 'sm',
+          action: {
+            type: 'uri',
+            label: 'News',
+            uri: 'https://linecorp.com',
+          },
+        },
+        {
+          type: 'spacer',
+          size: 'sm',
+        },
+      ],
+      flex: 0,
+      backgroundColor: '#f8f2dd',
+    },
+  }
+}
 
-export const priceCarousel = (): FlexMessage => ({
-  type: 'flex',
-  altText: 'example',
-  contents: {
-    type: 'carousel',
-    contents: [priceCard(), priceCard(), priceCard()],
-  },
-})
+// export const priceCarousel = (): FlexMessage => ({
+//   type: 'flex',
+//   altText: 'price flex',
+//   contents: priceCard(),
+// })
