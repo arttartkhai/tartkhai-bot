@@ -19,7 +19,7 @@ export default (text: string): Message | Message[] | null => {
         return [
           {
             type: 'text',
-            text: 'Invalid command, should try again with below example',
+            text: 'Invalid command, try again with below example',
           },
           instruction(),
         ]
