@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`createCustomPriceData should return correct custom data 1`] = `
+Object {
+  "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/1.png",
+  "marketCap": "846019026100.52",
+  "maxSupply": 21000000,
+  "name": "Bitcoin",
+  "percentChange_1h": "0.69",
+  "percentChange_24h": "4.12",
+  "percentChange_30d": "37.10",
+  "percentChange_60d": "31.55",
+  "percentChange_7d": "7.92",
+  "percentChange_90d": "-23.47",
+  "price": "45049.61",
+  "rank": 1,
+  "symbol": "BTC",
+  "totalSupply": 18779718,
+  "volume": "39707372463.02",
+}
+`;

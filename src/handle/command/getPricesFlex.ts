@@ -2,6 +2,7 @@ import { Message } from '@line/bot-sdk'
 import { getLatestQuote, getMetadata } from 'services/api'
 import { ErrorCode, IMetadata } from 'types/services'
 import * as _ from 'lodash'
+import { createCustomPriceData } from 'utils/data'
 
 export const getPricesFlex = async (symbols: string[]): Promise<Message> => {
   const metadataRes = await getMetadata(symbols)
@@ -13,14 +14,17 @@ export const getPricesFlex = async (symbols: string[]): Promise<Message> => {
       text: 'Not found the coin',
     }
   }
-  if (errorCode === ErrorCode.Success) {
-    const a = _.toArray<IMetadata>(metadataRes?.data)
-    console.log('🚀 ~ file: getPricesFlex.ts ~ line 18 ~ getPricesFlex ~ a', a)
-    // const latestQuoteData = await getLatestQuote(symbols)
 
-    return {
-      type: 'text',
-      text: a[0].description || '',
+  if (errorCode === ErrorCode.Success) {
+    const metaData = metadataRes?.data
+    const latestQuoteData = await getLatestQuote(symbols)
+    if (metaData && latestQuoteData) {
+      const customPriceData = symbols.map((symbol) => createCustomPriceData(metaData[symbol], latestQuoteData[symbol]))
+      console.log('🚀 ~ file: getPricesFlex.ts ~ line 28 ~ customPriceData ~ customPriceData', customPriceData)
+      return {
+        type: 'text',
+        text: customPriceData[0].price?.toString() || ''
+      }
     }
   }
 
