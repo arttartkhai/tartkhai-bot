@@ -37,7 +37,7 @@ const getHeader: CreateBox = (data) => {
           },
           {
             type: 'text',
-            text: `${data.price} $`,
+            text: `$${data.price}`,
             color: getColor(data.percentChange_24h),
           },
         ],
@@ -149,7 +149,7 @@ const getPriceBox: CreateBox = (data) => {
           },
           {
             type: 'text',
-            text: `Market Cap: ${data.marketCap} $`,
+            text: `MCap: $${data.marketCap}`,
             wrap: true,
             offsetStart: 'xl',
             weight: 'bold',
@@ -170,7 +170,7 @@ const getPriceBox: CreateBox = (data) => {
           },
           {
             type: 'text',
-            text: `Price: ${data.price} $`,
+            text: `Price: $${data.price}`,
             wrap: true,
             offsetStart: 'xl',
             weight: 'bold',

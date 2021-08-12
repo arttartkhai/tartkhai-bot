@@ -1,0 +1,383 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`priceCard should match snapshot 1`] = `
+Object {
+  "body": Object {
+    "contents": Array [
+      Object {
+        "contents": Array [
+          Object {
+            "align": "center",
+            "text": "Supply",
+            "type": "text",
+          },
+          Object {
+            "backgroundColor": "#9FD8E36E",
+            "contents": Array [
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "#0D8186",
+                "contents": Array [],
+                "height": "15px",
+                "justifyContent": "center",
+                "layout": "vertical",
+                "type": "box",
+                "width": "85%",
+              },
+              Object {
+                "contents": Array [
+                  Object {
+                    "align": "center",
+                    "color": "#ffffff",
+                    "size": "xs",
+                    "text": "18,779,718 / 21,000,000 (85%)",
+                    "type": "text",
+                  },
+                ],
+                "height": "15px",
+                "layout": "vertical",
+                "position": "absolute",
+                "type": "box",
+                "width": "100%",
+              },
+            ],
+            "height": "15px",
+            "layout": "vertical",
+            "margin": "xs",
+            "position": "relative",
+            "type": "box",
+          },
+        ],
+        "layout": "vertical",
+        "type": "box",
+      },
+      Object {
+        "contents": Array [
+          Object {
+            "contents": Array [
+              Object {
+                "flex": 0,
+                "text": "•",
+                "type": "text",
+                "weight": "bold",
+              },
+              Object {
+                "offsetStart": "xl",
+                "size": "sm",
+                "text": "Rank: 1",
+                "type": "text",
+                "weight": "bold",
+                "wrap": true,
+              },
+            ],
+            "layout": "horizontal",
+            "margin": "sm",
+            "type": "box",
+          },
+          Object {
+            "contents": Array [
+              Object {
+                "flex": 0,
+                "text": "•",
+                "type": "text",
+                "weight": "bold",
+              },
+              Object {
+                "offsetStart": "xl",
+                "size": "sm",
+                "text": "MCap: $846,019,026,100.52",
+                "type": "text",
+                "weight": "bold",
+                "wrap": true,
+              },
+            ],
+            "layout": "horizontal",
+            "margin": "sm",
+            "type": "box",
+          },
+          Object {
+            "contents": Array [
+              Object {
+                "flex": 0,
+                "text": "•",
+                "type": "text",
+                "weight": "bold",
+              },
+              Object {
+                "offsetStart": "xl",
+                "size": "sm",
+                "text": "Price: $45,049.61",
+                "type": "text",
+                "weight": "bold",
+                "wrap": true,
+              },
+            ],
+            "layout": "horizontal",
+            "margin": "sm",
+            "type": "box",
+          },
+          Object {
+            "contents": Array [
+              Object {
+                "flex": 0,
+                "text": "•",
+                "type": "text",
+                "weight": "bold",
+              },
+              Object {
+                "offsetStart": "xl",
+                "size": "sm",
+                "text": "Volume: 39,707,372,463.02",
+                "type": "text",
+                "weight": "bold",
+                "wrap": true,
+              },
+            ],
+            "layout": "horizontal",
+            "margin": "sm",
+            "type": "box",
+          },
+        ],
+        "layout": "vertical",
+        "paddingTop": "lg",
+        "type": "box",
+      },
+      Object {
+        "contents": Array [
+          Object {
+            "alignItems": "center",
+            "contents": Array [
+              Object {
+                "text": "Percentage Change",
+                "type": "text",
+                "weight": "bold",
+              },
+            ],
+            "layout": "vertical",
+            "type": "box",
+          },
+          Object {
+            "contents": Array [
+              Object {
+                "contents": Array [
+                  Object {
+                    "alignItems": "center",
+                    "contents": Array [
+                      Object {
+                        "flex": 0,
+                        "size": "xs",
+                        "text": "1h:",
+                        "type": "text",
+                      },
+                      Object {
+                        "color": "#008000",
+                        "flex": 0,
+                        "size": "xs",
+                        "text": "▲ 0.69%",
+                        "type": "text",
+                      },
+                    ],
+                    "justifyContent": "space-between",
+                    "layout": "horizontal",
+                    "type": "box",
+                  },
+                  Object {
+                    "contents": Array [
+                      Object {
+                        "flex": 0,
+                        "size": "xs",
+                        "text": "24h:",
+                        "type": "text",
+                      },
+                      Object {
+                        "color": "#008000",
+                        "flex": 0,
+                        "size": "xs",
+                        "text": "▲ 4.12%",
+                        "type": "text",
+                      },
+                    ],
+                    "justifyContent": "space-between",
+                    "layout": "horizontal",
+                    "type": "box",
+                  },
+                  Object {
+                    "contents": Array [
+                      Object {
+                        "flex": 0,
+                        "size": "xs",
+                        "text": "7d:",
+                        "type": "text",
+                      },
+                      Object {
+                        "color": "#008000",
+                        "flex": 0,
+                        "size": "xs",
+                        "text": "▲ 7.92%",
+                        "type": "text",
+                      },
+                    ],
+                    "justifyContent": "space-between",
+                    "layout": "horizontal",
+                    "type": "box",
+                  },
+                ],
+                "layout": "vertical",
+                "type": "box",
+              },
+              Object {
+                "contents": Array [
+                  Object {
+                    "contents": Array [
+                      Object {
+                        "flex": 0,
+                        "size": "xs",
+                        "text": "30d:",
+                        "type": "text",
+                      },
+                      Object {
+                        "color": "#008000",
+                        "flex": 0,
+                        "size": "xs",
+                        "text": "▲ 37.1%",
+                        "type": "text",
+                      },
+                    ],
+                    "justifyContent": "space-between",
+                    "layout": "horizontal",
+                    "type": "box",
+                  },
+                  Object {
+                    "contents": Array [
+                      Object {
+                        "flex": 0,
+                        "size": "xs",
+                        "text": "60d:",
+                        "type": "text",
+                      },
+                      Object {
+                        "color": "#008000",
+                        "flex": 0,
+                        "size": "xs",
+                        "text": "▲ 31.55%",
+                        "type": "text",
+                      },
+                    ],
+                    "justifyContent": "space-between",
+                    "layout": "horizontal",
+                    "type": "box",
+                  },
+                  Object {
+                    "contents": Array [
+                      Object {
+                        "flex": 0,
+                        "size": "xs",
+                        "text": "90d:",
+                        "type": "text",
+                      },
+                      Object {
+                        "color": "#ef4949",
+                        "flex": 0,
+                        "size": "xs",
+                        "text": "▼ -23.47%",
+                        "type": "text",
+                      },
+                    ],
+                    "justifyContent": "space-between",
+                    "layout": "horizontal",
+                    "type": "box",
+                  },
+                ],
+                "flex": 1,
+                "layout": "vertical",
+                "type": "box",
+              },
+            ],
+            "layout": "horizontal",
+            "spacing": "xl",
+            "type": "box",
+          },
+        ],
+        "layout": "vertical",
+        "paddingTop": "xl",
+        "type": "box",
+      },
+    ],
+    "layout": "vertical",
+    "paddingEnd": "lg",
+    "paddingStart": "lg",
+    "paddingTop": "none",
+    "type": "box",
+  },
+  "footer": Object {
+    "backgroundColor": "#f8f2dd",
+    "contents": Array [
+      Object {
+        "action": Object {
+          "label": "News",
+          "type": "uri",
+          "uri": "https://linecorp.com",
+        },
+        "height": "sm",
+        "style": "link",
+        "type": "button",
+      },
+      Object {
+        "size": "sm",
+        "type": "spacer",
+      },
+    ],
+    "flex": 0,
+    "layout": "vertical",
+    "type": "box",
+  },
+  "header": Object {
+    "contents": Array [
+      Object {
+        "contents": Array [
+          Object {
+            "contents": Array [
+              Object {
+                "text": "Bitcoin",
+                "type": "span",
+              },
+              Object {
+                "text": " (BTC)",
+                "type": "span",
+              },
+            ],
+            "flex": 0,
+            "size": "xl",
+            "text": "-",
+            "type": "text",
+            "weight": "bold",
+            "wrap": true,
+          },
+          Object {
+            "color": "#008000",
+            "text": "$45,049.61",
+            "type": "text",
+          },
+        ],
+        "flex": 3,
+        "layout": "vertical",
+        "type": "box",
+      },
+      Object {
+        "aspectMode": "fit",
+        "flex": 1,
+        "size": "xs",
+        "type": "image",
+        "url": "https://s2.coinmarketcap.com/static/img/coins/64x64/1.png",
+      },
+    ],
+    "flex": 0,
+    "layout": "horizontal",
+    "margin": "none",
+    "paddingBottom": "none",
+    "spacing": "none",
+    "type": "box",
+  },
+  "type": "bubble",
+}
+`;

@@ -4,18 +4,18 @@ import * as _ from 'lodash'
 import { createCustomPriceData } from 'utils/data'
 import { priceCarousel } from 'templates/priceCard'
 
-export const getPricesFlex = async (symbols: string[]): Promise<Message> => {
+export const getPricesFlex = async (symbolsInput: string[]): Promise<Message> => {
+  let symbols = symbolsInput
   if (!symbols.length) {
     return {
       type: 'text',
       text: 'please specify coin symbol',
     }
   }
-  //TODO: check stable coin
   if (symbols.includes('STABLECOIN')) {
-
+    symbols = ['USDT', 'USDC', 'BUSD', 'DAI', 'UST', 'TUSD', 'PAX', 'RSR', 'HUSD', 'USDN']
   }
-  
+
   const metaData = await getMetadata(symbols)
   if (metaData) {
     const latestQuoteData = await getLatestQuote(symbols)

@@ -8,9 +8,9 @@ describe('priceCard', () => {
     name: 'Bitcoin',
     percentChange_1h: '0.69',
     percentChange_24h: '4.12',
+    percentChange_7d: '7.92',
     percentChange_30d: '37.1',
     percentChange_60d: '31.55',
-    percentChange_7d: '7.92',
     percentChange_90d: '-23.47',
     price: '45,049.61',
     rank: '1',
@@ -22,7 +22,7 @@ describe('priceCard', () => {
   const testPriceCard = priceCard(mockProp)
   console.log(JSON.stringify(testPriceCard))
 
-  // it('should match snapshot', () => {
-  //   expect(priceCard().contents).toMatchSnapshot()
-  // })
+  it('should match snapshot', () => {
+    expect(testPriceCard).toMatchSnapshot()
+  })
 })
