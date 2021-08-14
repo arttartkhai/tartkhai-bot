@@ -7,4 +7,5 @@ export default {
   channelSecret: process.env.CHANNEL_SECRET || '',
   COINMARKETCAP_API_KEY: process.env.COINMARKETCAP_API_KEY,
   COINMARKETCAP_CURRENCIES_URL: 'https://coinmarketcap.com/currencies',
+  isDebugMode: process.env.DEBUG_MODE === 'true' ? true : false,
 }

@@ -15,8 +15,10 @@ export default () => {
 
   router.post('/', middleware(config), async (req: Request, res: Response): Promise<Response> => {
     const events: WebhookEvent[] = req.body.events
-
-    console.log('🚀 ~ events', events)
+    
+    if (config.isDebugMode) {
+      console.log('🚀 ~ events', events)
+    }
 
     // Process all of the received events asynchronously.
     const results = await Promise.all(

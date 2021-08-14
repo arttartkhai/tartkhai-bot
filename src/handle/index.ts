@@ -8,7 +8,6 @@ const client = new Client(config)
 
 // Function handler to receive the text.
 export default async (event: WebhookEvent): Promise<MessageAPIResponseBase | undefined> => {
-  console.log('🚀 ~ incoming event', event)
 
   // Process all variables here.
   if (event.type !== 'message' || event.message.type !== 'text') {
