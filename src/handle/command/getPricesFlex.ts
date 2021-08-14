@@ -1,8 +1,8 @@
 import * as _ from 'lodash'
 import { Message } from '@line/bot-sdk'
-import { getLatestQuote, getMetadata } from 'services/api'
-import { createCustomPriceData } from 'utils/data'
-import { priceCarousel } from 'templates/priceCard'
+import { getLatestQuote, getMetadata } from '../../services/api'
+import { createCustomPriceData } from '../../utils/data'
+import { priceCarousel } from '../../templates/priceCard'
 
 export const getPricesFlex = async (symbolsInput: string[]): Promise<Message> => {
   let symbols = symbolsInput

@@ -1,5 +1,5 @@
 import { FlexBox, FlexMessage } from '@line/bot-sdk'
-import { Color } from 'constants/styles'
+import { Color } from '../constants/styles'
 
 interface InstructionItem {
   title: string

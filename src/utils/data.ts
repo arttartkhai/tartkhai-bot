@@ -1,6 +1,6 @@
-import config from 'config/development'
-import { ILatestQuote, IMetadata } from 'types/services'
-import { CustomCoinData } from 'types/template'
+import config from '../config/development'
+import { ILatestQuote, IMetadata } from '../types/services'
+import { CustomCoinData } from '../types/template'
 
 const formatNumber = (num: number): string => {
   return num.toLocaleString(undefined, { maximumFractionDigits: 2 })

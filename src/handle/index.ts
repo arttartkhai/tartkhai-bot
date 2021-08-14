@@ -1,5 +1,5 @@
 import { Client, WebhookEvent, MessageAPIResponseBase } from '@line/bot-sdk'
-import config from 'config/development'
+import config from '../config/development'
 import processText from './processText'
 import * as _ from 'lodash'
 

@@ -1,8 +1,8 @@
 import { Message } from '@line/bot-sdk'
-import { Commands } from 'constants/command'
-import instruction from 'templates/instruction'
-import image from 'templates/image'
-import { extractCommand } from 'utils/message'
+import { Commands } from '../constants/command'
+import instruction from '../templates/instruction'
+import image from '../templates/image'
+import { extractCommand } from '../utils/message'
 import { getPricesFlex } from './command/getPricesFlex'
 
 export default async (text: string): Promise<Message | Message[]> => {

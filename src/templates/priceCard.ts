@@ -1,8 +1,8 @@
 //TODO: handle when unlimited supply,
 import { FlexBox, FlexBubble, FlexCarousel, FlexMessage } from '@line/bot-sdk'
-import { CustomCoinData, PriceCardProp } from 'types/template'
-import { Color } from 'constants/styles'
-import { parseIntWithUnFormatNumber } from 'utils/data'
+import { CustomCoinData, PriceCardProp } from '../types/template'
+import { Color } from '../constants/styles'
+import { parseIntWithUnFormatNumber } from '../utils/data'
 
 type CreateBox = (data: CustomCoinData) => FlexBox
 
