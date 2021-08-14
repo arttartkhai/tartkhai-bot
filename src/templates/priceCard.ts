@@ -2,6 +2,7 @@
 import { FlexBox, FlexBubble, FlexCarousel, FlexMessage } from '@line/bot-sdk'
 import { CustomCoinData, PriceCardProp } from 'types/template'
 import { Color } from 'constants/styles'
+import { parseIntWithUnFormatNumber } from 'utils/data'
 
 type CreateBox = (data: CustomCoinData) => FlexBox
 
@@ -78,8 +79,8 @@ const getSupplyBox: CreateBox = (data) => {
   let percentage: string
 
   if (!!data.maxSupply) {
-    const maxSupply = Number.parseInt(data.maxSupply)
-    const circulatingSupply = Number.parseInt(data.circulatingSupply)
+    const maxSupply = parseIntWithUnFormatNumber(data.maxSupply)
+    const circulatingSupply = parseIntWithUnFormatNumber(data.circulatingSupply)
 
     percentage = Math.floor((circulatingSupply / maxSupply) * 100).toString()
     barText = `${data.circulatingSupply} / ${data.maxSupply} (${percentage}%)`

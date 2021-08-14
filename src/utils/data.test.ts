@@ -1,4 +1,12 @@
-import { createCustomPriceData, transformToKebab } from './data'
+import { createCustomPriceData, parseIntWithUnFormatNumber, transformToKebab } from './data'
+
+describe('parseIntWithUnFormatNumber', () => {
+  let input
+  it('should return int', () => {
+    input = '111,222,333.04'
+    expect(parseIntWithUnFormatNumber(input)).toEqual(111222333)
+  })
+})
 
 describe('createCustomPriceData', () => {
   const mockMeta = {

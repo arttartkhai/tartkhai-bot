@@ -6,6 +6,9 @@ const formatNumber = (num: number): string => {
   return num.toLocaleString(undefined, { maximumFractionDigits: 2 })
 }
 
+// transform string to number for numStr that come from formatNumber fn
+export const parseIntWithUnFormatNumber = (numStr: string): number => Number.parseInt(numStr.replace(/,/g,''))
+
 export const createCustomPriceData = (meta: IMetadata, quote: ILatestQuote): CustomCoinData => ({
   name: meta.name,
   symbol: meta.symbol,
