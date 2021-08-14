@@ -1,12 +1,13 @@
 //TODO: handle when unlimited supply,
 import { FlexBox, FlexBubble, FlexCarousel, FlexMessage } from '@line/bot-sdk'
 import { CustomCoinData, PriceCardProp } from 'types/template'
+import { Color } from 'constants/styles'
 
 type CreateBox = (data: CustomCoinData) => FlexBox
 
 const isNegative = (value: string) => Number.parseFloat(value) < 0
-const getColor = (value: string) => (isNegative(value) ? '#ef4949' : '#008000')
-const withArrowAndPercent = (value: string) => (isNegative(value) ? `▼ ${value}%` : `▲ ${value}%`)
+const getColor = (value: string) => (isNegative(value) ? Color.Negative : Color.Positive)
+const withArrowAndPercent = (value: string) => (isNegative(value) ? `${value}% ▼` : `${value}% ▲`)
 
 const getHeader: CreateBox = (data) => {
   return {
@@ -14,11 +15,19 @@ const getHeader: CreateBox = (data) => {
     layout: 'horizontal',
     contents: [
       {
+        type: 'image',
+        url: data.logo,
+        size: 'xs',
+        aspectMode: 'fit',
+        flex: 1,
+      },
+      {
         type: 'box',
         layout: 'vertical',
         contents: [
           {
             type: 'text',
+            text: '-',
             size: 'xl',
             flex: 0,
             contents: [
@@ -33,22 +42,28 @@ const getHeader: CreateBox = (data) => {
             ],
             wrap: true,
             weight: 'bold',
-            text: '-',
           },
           {
             type: 'text',
-            text: `$${data.price}`,
+            text: '-',
             color: getColor(data.percentChange_24h),
+            contents: [
+              {
+                type: 'span',
+                text: `$${data.price}`,
+                weight: 'bold',
+              },
+              {
+                type: 'span',
+                text: `   (${withArrowAndPercent(data.percentChange_24h)})`,
+                size: 'xs',
+              },
+            ],
+            wrap: true,
           },
         ],
         flex: 3,
-      },
-      {
-        type: 'image',
-        url: data.logo,
-        size: 'xs',
-        aspectMode: 'fit',
-        flex: 1,
+        paddingStart: 'lg',
       },
     ],
     flex: 0,
@@ -59,16 +74,27 @@ const getHeader: CreateBox = (data) => {
 }
 
 const getSupplyBox: CreateBox = (data) => {
-  const maxSupply = Number.parseInt(data.maxSupply ? data.maxSupply : '')
-  const totalSupply = Number.parseInt(data.totalSupply)
-  const percentage = Math.floor((totalSupply / maxSupply) * 100).toString()
+  let barText: string
+  let percentage: string
+
+  if (!!data.maxSupply) {
+    const maxSupply = Number.parseInt(data.maxSupply)
+    const circulatingSupply = Number.parseInt(data.circulatingSupply)
+
+    percentage = Math.floor((circulatingSupply / maxSupply) * 100).toString()
+    barText = `${data.circulatingSupply} / ${data.maxSupply} (${percentage}%)`
+  } else {
+    barText = 'Unlimited'
+    percentage = '100'
+  }
+
   return {
     type: 'box',
     layout: 'vertical',
     contents: [
       {
         type: 'text',
-        text: 'Supply',
+        text: 'Circulation Supply',
         align: 'center',
       },
       {
@@ -79,7 +105,7 @@ const getSupplyBox: CreateBox = (data) => {
             type: 'box',
             layout: 'vertical',
             contents: [],
-            backgroundColor: '#0D8186',
+            backgroundColor: Color.Primary,
             width: `${percentage}%`,
             height: '15px',
             alignItems: 'center',
@@ -91,8 +117,8 @@ const getSupplyBox: CreateBox = (data) => {
             contents: [
               {
                 type: 'text',
-                text: `${data.totalSupply} / ${data.maxSupply} (${percentage}%)`,
-                color: '#ffffff',
+                text: barText,
+                color: Color.White,
                 size: 'xs',
                 align: 'center',
               },
@@ -102,7 +128,7 @@ const getSupplyBox: CreateBox = (data) => {
             width: '100%',
           },
         ],
-        backgroundColor: '#9FD8E36E',
+        backgroundColor: Color.LightPrimary,
         height: '15px',
         margin: 'xs',
         position: 'relative',
@@ -118,90 +144,93 @@ const getPriceBox: CreateBox = (data) => {
     contents: [
       {
         type: 'box',
-        layout: 'horizontal',
+        layout: 'vertical',
         contents: [
           {
-            type: 'text',
-            text: '•',
-            weight: 'bold',
-            flex: 0,
-          },
-          {
-            type: 'text',
-            text: `Rank: ${data.rank}`,
-            wrap: true,
-            offsetStart: 'xl',
-            weight: 'bold',
-            size: 'sm',
+            type: 'box',
+            layout: 'baseline',
+            contents: [
+              {
+                type: 'text',
+                text: '•',
+                flex: 0,
+                weight: 'bold',
+              },
+              {
+                type: 'text',
+                text: 'Rank: 1',
+                weight: 'bold',
+                size: 'sm',
+                offsetStart: 'lg',
+              },
+            ],
           },
         ],
-        margin: 'sm',
       },
       {
         type: 'box',
-        layout: 'horizontal',
+        layout: 'vertical',
         contents: [
           {
-            type: 'text',
-            text: '•',
-            weight: 'bold',
-            flex: 0,
+            type: 'box',
+            layout: 'baseline',
+            contents: [
+              {
+                type: 'text',
+                text: '•',
+                flex: 0,
+                weight: 'bold',
+              },
+              {
+                type: 'text',
+                text: 'Market Capitalization',
+                weight: 'bold',
+                size: 'sm',
+                offsetStart: 'lg',
+              },
+            ],
           },
           {
             type: 'text',
-            text: `MCap: $${data.marketCap}`,
-            wrap: true,
-            offsetStart: 'xl',
-            weight: 'bold',
+            text: `$${data.marketCap} (USD)`,
+            offsetStart: 'xxl',
             size: 'sm',
           },
         ],
-        margin: 'sm',
       },
       {
         type: 'box',
-        layout: 'horizontal',
+        layout: 'vertical',
         contents: [
           {
-            type: 'text',
-            text: '•',
-            weight: 'bold',
-            flex: 0,
+            type: 'box',
+            layout: 'baseline',
+            contents: [
+              {
+                type: 'text',
+                text: '•',
+                flex: 0,
+                weight: 'bold',
+              },
+              {
+                type: 'text',
+                text: 'Volume (24h)',
+                weight: 'bold',
+                size: 'sm',
+                offsetStart: 'lg',
+              },
+            ],
           },
           {
             type: 'text',
-            text: `Price: $${data.price}`,
-            wrap: true,
-            offsetStart: 'xl',
-            weight: 'bold',
+            text: `$${data.volume} (USD)`,
+            offsetStart: 'xxl',
             size: 'sm',
           },
         ],
-        margin: 'sm',
-      },
-      {
-        type: 'box',
-        layout: 'horizontal',
-        contents: [
-          {
-            type: 'text',
-            text: '•',
-            weight: 'bold',
-            flex: 0,
-          },
-          {
-            type: 'text',
-            text: `Volume: ${data.volume}`,
-            wrap: true,
-            offsetStart: 'xl',
-            weight: 'bold',
-            size: 'sm',
-          },
-        ],
-        margin: 'sm',
       },
     ],
-    paddingTop: 'lg',
+    paddingTop: 'md',
   }
 }
 
@@ -221,6 +250,7 @@ const getPercentageBox: CreateBox = (data) => {
           },
         ],
         alignItems: 'center',
+        paddingBottom: 'sm',
       },
       {
         type: 'box',
@@ -364,9 +394,34 @@ const getPercentageBox: CreateBox = (data) => {
         spacing: 'xl',
       },
     ],
-    paddingTop: 'xl',
+    paddingTop: 'md',
+    paddingStart: 'lg',
+    paddingEnd: 'lg',
   }
 }
+
+const getFooter: CreateBox = (data) => {
+  return {
+    type: 'box',
+    layout: 'vertical',
+    contents: [
+      {
+        type: 'button',
+        style: 'link',
+        action: {
+          type: 'uri',
+          label: 'More Information',
+          uri: 'https://linecorp.com',
+        },
+        color: Color.White,
+        height: 'sm',
+      },
+    ],
+    backgroundColor: Color.Primary,
+    paddingAll: 'none',
+  }
+}
+
 export const priceCard = (data: CustomCoinData): FlexBubble => {
   return {
     type: 'bubble',
@@ -375,25 +430,7 @@ export const priceCard = (data: CustomCoinData): FlexBubble => {
       type: 'box',
       layout: 'vertical',
       contents: [
-        // {
-        //   type: 'box',
-        //   layout: 'vertical',
-        //   contents: [
-        //     {
-        //       type: 'box',
-        //       layout: 'vertical',
-        //       contents: [
-        //         {
-        //           type: 'text',
-        //           text: 'Bitcoin (BTC) is a cryptocurrency . Users are able to generate BTC through the process of mining. Bitcoin has a current supply of 18,783,500. The last known price of Bitcoin is 45,616.08914537 USD and is down -0.12 over the last 24 hours ...',
-        //           wrap: true,
-        //           size: 'xxs',
-        //         },
-        //       ],
-        //     },
-        //   ],
-        // },
-        ...(data.maxSupply ? [getSupplyBox(data)] : []),
+        ...[getSupplyBox(data)],
         ...[getPriceBox(data)],
         ...[getPercentageBox(data)],
       ],
@@ -401,28 +438,7 @@ export const priceCard = (data: CustomCoinData): FlexBubble => {
       paddingStart: 'lg',
       paddingEnd: 'lg',
     },
-    footer: {
-      type: 'box',
-      layout: 'vertical',
-      contents: [
-        {
-          type: 'button',
-          style: 'link',
-          height: 'sm',
-          action: {
-            type: 'uri',
-            label: 'News',
-            uri: 'https://linecorp.com',
-          },
-        },
-        {
-          type: 'spacer',
-          size: 'sm',
-        },
-      ],
-      flex: 0,
-      backgroundColor: '#f8f2dd',
-    },
+    footer: getFooter(data)
   }
 }
 

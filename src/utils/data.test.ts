@@ -55,6 +55,7 @@ describe('createCustomPriceData', () => {
       rank: '1',
       symbol: 'BTC',
       totalSupply: '18,779,718',
+      circulatingSupply: '18,779,718',
       volume: '39,707,372,463.02',
     })
   })

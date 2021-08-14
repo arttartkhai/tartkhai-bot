@@ -4,6 +4,7 @@ describe('priceCard', () => {
   const mockProp = {
     logo: 'https://s2.coinmarketcap.com/static/img/coins/64x64/1.png',
     marketCap: '846,019,026,100.52',
+    // maxSupply: null,
     maxSupply: '21,000,000',
     name: 'Bitcoin',
     percentChange_1h: '0.69',
@@ -16,13 +17,14 @@ describe('priceCard', () => {
     rank: '1',
     symbol: 'BTC',
     totalSupply: '18,779,718',
+    circulatingSupply: '18,779,718',
     volume: '39,707,372,463.02',
   }
 
   const testPriceCard = priceCard(mockProp)
   console.log(JSON.stringify(testPriceCard))
 
-  it('should match snapshot', () => {
+  it('should match snapshot for 1 bubble', () => {
     expect(testPriceCard).toMatchSnapshot()
   })
 })

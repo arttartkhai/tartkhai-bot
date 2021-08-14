@@ -11,6 +11,7 @@ export const createCustomPriceData = (meta: IMetadata, quote: ILatestQuote) : Cu
   logo: meta.logo,
   maxSupply: quote.max_supply ? formatNumber(quote.max_supply) : null,
   totalSupply: formatNumber(quote.total_supply),
+  circulatingSupply: formatNumber(quote.circulating_supply),
   rank: formatNumber(quote.cmc_rank),
   price: formatNumber(quote.quote?.USD?.price),
   volume: formatNumber(quote.quote?.USD?.volume_24h),

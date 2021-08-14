@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`priceCard should match snapshot 1`] = `
+exports[`priceCard should match snapshot for 1 bubble 1`] = `
 Object {
   "body": Object {
     "contents": Array [
@@ -8,15 +8,15 @@ Object {
         "contents": Array [
           Object {
             "align": "center",
-            "text": "Supply",
+            "text": "Circulation Supply",
             "type": "text",
           },
           Object {
-            "backgroundColor": "#9FD8E36E",
+            "backgroundColor": "#CF5E0275",
             "contents": Array [
               Object {
                 "alignItems": "center",
-                "backgroundColor": "#0D8186",
+                "backgroundColor": "#CF5E02",
                 "contents": Array [],
                 "height": "15px",
                 "justifyContent": "center",
@@ -56,90 +56,93 @@ Object {
           Object {
             "contents": Array [
               Object {
-                "flex": 0,
-                "text": "•",
-                "type": "text",
-                "weight": "bold",
-              },
-              Object {
-                "offsetStart": "xl",
-                "size": "sm",
-                "text": "Rank: 1",
-                "type": "text",
-                "weight": "bold",
-                "wrap": true,
+                "contents": Array [
+                  Object {
+                    "flex": 0,
+                    "text": "•",
+                    "type": "text",
+                    "weight": "bold",
+                  },
+                  Object {
+                    "offsetStart": "lg",
+                    "size": "sm",
+                    "text": "Rank: 1",
+                    "type": "text",
+                    "weight": "bold",
+                  },
+                ],
+                "layout": "baseline",
+                "type": "box",
               },
             ],
-            "layout": "horizontal",
-            "margin": "sm",
+            "layout": "vertical",
             "type": "box",
           },
           Object {
             "contents": Array [
               Object {
-                "flex": 0,
-                "text": "•",
-                "type": "text",
-                "weight": "bold",
+                "contents": Array [
+                  Object {
+                    "flex": 0,
+                    "text": "•",
+                    "type": "text",
+                    "weight": "bold",
+                  },
+                  Object {
+                    "offsetStart": "lg",
+                    "size": "sm",
+                    "text": "Market Capitalization",
+                    "type": "text",
+                    "weight": "bold",
+                  },
+                ],
+                "layout": "baseline",
+                "type": "box",
               },
               Object {
-                "offsetStart": "xl",
+                "offsetStart": "xxl",
                 "size": "sm",
-                "text": "MCap: $846,019,026,100.52",
+                "text": "$846,019,026,100.52 (USD)",
                 "type": "text",
-                "weight": "bold",
-                "wrap": true,
               },
             ],
-            "layout": "horizontal",
-            "margin": "sm",
+            "layout": "vertical",
             "type": "box",
           },
           Object {
             "contents": Array [
               Object {
-                "flex": 0,
-                "text": "•",
-                "type": "text",
-                "weight": "bold",
+                "contents": Array [
+                  Object {
+                    "flex": 0,
+                    "text": "•",
+                    "type": "text",
+                    "weight": "bold",
+                  },
+                  Object {
+                    "offsetStart": "lg",
+                    "size": "sm",
+                    "text": "Volume (24h)",
+                    "type": "text",
+                    "weight": "bold",
+                  },
+                ],
+                "layout": "baseline",
+                "type": "box",
               },
               Object {
-                "offsetStart": "xl",
+                "offsetStart": "xxl",
                 "size": "sm",
-                "text": "Price: $45,049.61",
+                "text": "$39,707,372,463.02 (USD)",
                 "type": "text",
-                "weight": "bold",
-                "wrap": true,
               },
             ],
-            "layout": "horizontal",
-            "margin": "sm",
-            "type": "box",
-          },
-          Object {
-            "contents": Array [
-              Object {
-                "flex": 0,
-                "text": "•",
-                "type": "text",
-                "weight": "bold",
-              },
-              Object {
-                "offsetStart": "xl",
-                "size": "sm",
-                "text": "Volume: 39,707,372,463.02",
-                "type": "text",
-                "weight": "bold",
-                "wrap": true,
-              },
-            ],
-            "layout": "horizontal",
-            "margin": "sm",
+            "layout": "vertical",
             "type": "box",
           },
         ],
         "layout": "vertical",
-        "paddingTop": "lg",
+        "paddingTop": "md",
         "type": "box",
       },
       Object {
@@ -154,6 +157,7 @@ Object {
               },
             ],
             "layout": "vertical",
+            "paddingBottom": "sm",
             "type": "box",
           },
           Object {
@@ -170,10 +174,10 @@ Object {
                         "type": "text",
                       },
                       Object {
-                        "color": "#008000",
+                        "color": "#16c683",
                         "flex": 0,
                         "size": "xs",
-                        "text": "▲ 0.69%",
+                        "text": "0.69% ▲",
                         "type": "text",
                       },
                     ],
@@ -190,10 +194,10 @@ Object {
                         "type": "text",
                       },
                       Object {
-                        "color": "#008000",
+                        "color": "#16c683",
                         "flex": 0,
                         "size": "xs",
-                        "text": "▲ 4.12%",
+                        "text": "4.12% ▲",
                         "type": "text",
                       },
                     ],
@@ -210,10 +214,10 @@ Object {
                         "type": "text",
                       },
                       Object {
-                        "color": "#008000",
+                        "color": "#16c683",
                         "flex": 0,
                         "size": "xs",
-                        "text": "▲ 7.92%",
+                        "text": "7.92% ▲",
                         "type": "text",
                       },
                     ],
@@ -236,10 +240,10 @@ Object {
                         "type": "text",
                       },
                       Object {
-                        "color": "#008000",
+                        "color": "#16c683",
                         "flex": 0,
                         "size": "xs",
-                        "text": "▲ 37.1%",
+                        "text": "37.1% ▲",
                         "type": "text",
                       },
                     ],
@@ -256,10 +260,10 @@ Object {
                         "type": "text",
                       },
                       Object {
-                        "color": "#008000",
+                        "color": "#16c683",
                         "flex": 0,
                         "size": "xs",
-                        "text": "▲ 31.55%",
+                        "text": "31.55% ▲",
                         "type": "text",
                       },
                     ],
@@ -276,10 +280,10 @@ Object {
                         "type": "text",
                       },
                       Object {
-                        "color": "#ef4949",
+                        "color": "#eb3943",
                         "flex": 0,
                         "size": "xs",
-                        "text": "▼ -23.47%",
+                        "text": "-23.47% ▼",
                         "type": "text",
                       },
                     ],
@@ -299,7 +303,9 @@ Object {
           },
         ],
         "layout": "vertical",
-        "paddingTop": "xl",
+        "paddingEnd": "lg",
+        "paddingStart": "lg",
+        "paddingTop": "md",
         "type": "box",
       },
     ],
@@ -310,29 +316,33 @@ Object {
     "type": "box",
   },
   "footer": Object {
-    "backgroundColor": "#f8f2dd",
+    "backgroundColor": "#CF5E02",
     "contents": Array [
       Object {
         "action": Object {
-          "label": "News",
+          "label": "More Information",
           "type": "uri",
           "uri": "https://linecorp.com",
         },
+        "color": "#ffffff",
         "height": "sm",
         "style": "link",
         "type": "button",
       },
-      Object {
-        "size": "sm",
-        "type": "spacer",
-      },
     ],
-    "flex": 0,
     "layout": "vertical",
+    "paddingAll": "none",
     "type": "box",
   },
   "header": Object {
     "contents": Array [
+      Object {
+        "aspectMode": "fit",
+        "flex": 1,
+        "size": "xs",
+        "type": "image",
+        "url": "https://s2.coinmarketcap.com/static/img/coins/64x64/1.png",
+      },
       Object {
         "contents": Array [
           Object {
@@ -354,21 +364,28 @@ Object {
             "wrap": true,
           },
           Object {
-            "color": "#008000",
-            "text": "$45,049.61",
+            "color": "#16c683",
+            "contents": Array [
+              Object {
+                "text": "$45,049.61",
+                "type": "span",
+                "weight": "bold",
+              },
+              Object {
+                "size": "xs",
+                "text": "   (4.12% ▲)",
+                "type": "span",
+              },
+            ],
+            "text": "-",
             "type": "text",
+            "wrap": true,
           },
         ],
         "flex": 3,
         "layout": "vertical",
+        "paddingStart": "lg",
         "type": "box",
-      },
-      Object {
-        "aspectMode": "fit",
-        "flex": 1,
-        "size": "xs",
-        "type": "image",
-        "url": "https://s2.coinmarketcap.com/static/img/coins/64x64/1.png",
       },
     ],
     "flex": 0,

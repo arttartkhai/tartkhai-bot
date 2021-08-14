@@ -4,6 +4,7 @@ export interface CustomCoinData {
     logo: string,
     maxSupply: string | null,
     totalSupply: string,
+    circulatingSupply: string
     rank: string,
     price: string,
     volume: string,
