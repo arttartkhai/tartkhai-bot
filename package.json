@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "test:w": "jest --watch",
+    "test:watch": "jest --watch",
     "start": "ts-node -r tsconfig-paths/register ./src",
-    "dev": "nodemon --exec ts-node -r tsconfig-paths/register ./src/index.ts"
+    "dev": "nodemon --exec ts-node -r tsconfig-paths/register ./src/index.ts",
+    "build": "tsc -p ."
   },
   "author": "",
   "license": "ISC",

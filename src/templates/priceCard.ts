@@ -160,7 +160,7 @@ const getPriceBox: CreateBox = (data) => {
               },
               {
                 type: 'text',
-                text: 'Rank: 1',
+                text: `Rank: ${data.rank}`,
                 weight: 'bold',
                 size: 'sm',
                 offsetStart: 'lg',

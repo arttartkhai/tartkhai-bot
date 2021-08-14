@@ -1,11 +1,15 @@
-# FROM node:15.1-alpine
+FROM node:15-alpine
 
-# WORKDIR /app
+WORKDIR /app
 
-# COPY ./package.json /app
+COPY ./package.json .
 
-# RUN yarn
+RUN npm install
 
-# COPY ./src /app/src
+COPY . .
 
-# CMD ["npm", "run", "start"]
+RUN npm run build 
+
+CMD ["npm","start"]
+
+

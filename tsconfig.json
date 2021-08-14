@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "baseUrl": "./src",
-    "target": "es6",
+    "target": "es5",
     "skipLibCheck": true,
     "esModuleInterop": true,
     "strict": true,
@@ -10,7 +10,14 @@
     "outDir": "./dist",
     "moduleResolution": "node",
     "paths": {
+      "config/*": ["config/*"],
+      "constants/*": ["constants/*"],
+      "handle/*": ["handle/*"],
+      "services/*": ["services/*"],
+      "templates/*": ["templates/*"],
       "types/*": ["types/*"],
+      "utils/*": ["utils/*"],
+      "webhook/*": ["webhook/*"],
     }
   },
   "exclude": ["node_modules"],
