@@ -447,7 +447,7 @@ export const priceCarousel = (listData: PriceCardProp): FlexMessage => {
   const cardBubble = listData.map((coinData) => priceCard(coinData))
   return {
     type: 'flex',
-    altText: 'price flex',
+    altText: 'price-cards',
     contents: {
       type: 'carousel',
       contents: cardBubble,

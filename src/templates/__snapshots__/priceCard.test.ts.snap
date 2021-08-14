@@ -8,6 +8,7 @@ Object {
         "contents": Array [
           Object {
             "align": "center",
+            "size": "sm",
             "text": "Circulation Supply",
             "type": "text",
           },
@@ -322,7 +323,7 @@ Object {
         "action": Object {
           "label": "More Information",
           "type": "uri",
-          "uri": "https://linecorp.com",
+          "uri": "https://coinmarketcap.com/currencies/bitcoin",
         },
         "color": "#ffffff",
         "height": "sm",

@@ -2,7 +2,7 @@ import { FlexMessage } from '@line/bot-sdk'
 
 export default (actions = []): FlexMessage => ({
   type: 'flex',
-  altText: 'instruction-flex',
+  altText: 'instruction manual',
   contents: {
     type: 'bubble',
     body: {

@@ -1,6 +1,6 @@
+import * as _ from 'lodash'
 import { Message } from '@line/bot-sdk'
 import { getLatestQuote, getMetadata } from 'services/api'
-import * as _ from 'lodash'
 import { createCustomPriceData } from 'utils/data'
 import { priceCarousel } from 'templates/priceCard'
 

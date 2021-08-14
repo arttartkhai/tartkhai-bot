@@ -19,6 +19,7 @@ describe('priceCard', () => {
     totalSupply: '18,779,718',
     circulatingSupply: '18,779,718',
     volume: '39,707,372,463.02',
+    coinMarketCapUrl: 'https://coinmarketcap.com/currencies/bitcoin'
   }
 
   const testPriceCard = priceCard(mockProp)

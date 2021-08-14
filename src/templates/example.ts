@@ -1,6 +1,6 @@
-import { Client, WebhookEvent, TextMessage, MessageAPIResponseBase, FlexBubble, FlexMessage } from '@line/bot-sdk';
+import { FlexMessage } from '@line/bot-sdk'
 
-export default (data): FlexMessage => ({
+export default (): FlexMessage => ({
   type: 'flex',
   altText: 'example',
   contents: {
@@ -11,10 +11,6 @@ export default (data): FlexMessage => ({
       size: 'full',
       aspectRatio: '20:13',
       aspectMode: 'cover',
-      // action: {
-      //   type: 'uri',
-      //   uri: 'http://linecorp.com/',
-      // },
     },
     body: {
       type: 'box',
@@ -153,4 +149,4 @@ export default (data): FlexMessage => ({
       flex: 0,
     },
   },
-});
+})
