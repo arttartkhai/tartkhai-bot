@@ -1,4 +1,4 @@
-import { createCustomPriceData } from './data'
+import { createCustomPriceData, transformToKebab } from './data'
 
 describe('createCustomPriceData', () => {
   const mockMeta = {
@@ -57,6 +57,19 @@ describe('createCustomPriceData', () => {
       totalSupply: '18,779,718',
       circulatingSupply: '18,779,718',
       volume: '39,707,372,463.02',
+      coinMarketCapUrl: 'https://coinmarketcap.com/currencies/bitcoin'
     })
+  })
+})
+
+
+describe('transformToKebab', () => {
+  let input
+  it('should transform to kebab case', () => {
+    input = 'USD Coin'
+    expect(transformToKebab(input)).toEqual('usd-coin')
+
+    input = '  TrueUsd '
+    expect(transformToKebab(input)).toEqual('trueusd')
   })
 })

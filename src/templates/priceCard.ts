@@ -96,6 +96,7 @@ const getSupplyBox: CreateBox = (data) => {
         type: 'text',
         text: 'Circulation Supply',
         align: 'center',
+        size: 'sm',
       },
       {
         type: 'box',
@@ -411,7 +412,7 @@ const getFooter: CreateBox = (data) => {
         action: {
           type: 'uri',
           label: 'More Information',
-          uri: 'https://linecorp.com',
+          uri: data.coinMarketCapUrl,
         },
         color: Color.White,
         height: 'sm',

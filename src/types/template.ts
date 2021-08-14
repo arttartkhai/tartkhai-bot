@@ -15,6 +15,7 @@ export interface CustomCoinData {
     percentChange_30d: string,
     percentChange_60d: string,
     percentChange_90d: string,
+    coinMarketCapUrl: string,
   }
 
 export type PriceCardProp = CustomCoinData[]
