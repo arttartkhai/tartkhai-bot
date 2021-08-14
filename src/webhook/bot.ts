@@ -1,7 +1,7 @@
 import express, { Request, Response } from 'express'
 import { WebhookEvent, middleware } from '@line/bot-sdk'
-import config from 'config/development'
-import handleEvent from 'handle'
+import config from '../config/development'
+import handleEvent from '../handle'
 
 export default () => {
   const router = express.Router()

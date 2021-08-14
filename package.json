@@ -7,7 +7,9 @@
     "test": "jest",
     "test:w": "jest --watch",
     "start": "ts-node -r tsconfig-paths/register ./src",
-    "dev": "nodemon --exec ts-node -r tsconfig-paths/register ./src/index.ts"
+    "dev": "nodemon --exec ts-node -r tsconfig-paths/register ./src/index.ts",
+    "build": "tsc -b tsconfig.json",
+    "phoo": "node ./dist/index.js"
   },
   "author": "",
   "license": "ISC",

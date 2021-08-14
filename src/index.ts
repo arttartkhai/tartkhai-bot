@@ -1,6 +1,6 @@
 import express, { Application } from 'express'
 import cors from 'cors'
-import bot from 'webhook/bot'
+import bot from './webhook/bot'
 import dotenv  from "dotenv"
 
 dotenv.config()

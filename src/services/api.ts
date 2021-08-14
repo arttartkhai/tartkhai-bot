@@ -1,5 +1,5 @@
 import axios from 'axios'
-import config from 'config/development'
+import config from '../config/development'
 import { ILatestQuote, ILatestQuoteResponse, IMetadata, IMetadataResponse } from 'types/services'
 
 const COINMARKETCAP_ENDPOINT = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency'
