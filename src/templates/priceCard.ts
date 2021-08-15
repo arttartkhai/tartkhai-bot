@@ -160,7 +160,7 @@ const getPriceBox: CreateBox = (data) => {
               },
               {
                 type: 'text',
-                text: `Rank: ${data.rank}`,
+                text: `Market Rank: ${data.rank}`,
                 weight: 'bold',
                 size: 'sm',
                 offsetStart: 'lg',
@@ -194,7 +194,7 @@ const getPriceBox: CreateBox = (data) => {
           },
           {
             type: 'text',
-            text: `$${data.marketCap} (USD)`,
+            text: `$${data.marketCap}`,
             offsetStart: 'xxl',
             size: 'sm',
           },
@@ -225,7 +225,7 @@ const getPriceBox: CreateBox = (data) => {
           },
           {
             type: 'text',
-            text: `$${data.volume} (USD)`,
+            text: `$${data.volume}`,
             offsetStart: 'xxl',
             size: 'sm',
           },

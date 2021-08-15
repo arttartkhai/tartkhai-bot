@@ -27,7 +27,7 @@ export const getPricesFlex = async (symbolsInput: string[]): Promise<Message> =>
 
   return {
     type: 'text',
-    text: 'Error! could not get response from 3rd server',
+    text: 'Error! could not get response from 3rd party server',
   }
 
   //TODO : mapping image and check if image exist or not
