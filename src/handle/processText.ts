@@ -13,6 +13,8 @@ export default async (text: string): Promise<Message | Message[]> => {
         return image('https://alternative.me/crypto/fear-and-greed-index.png')
       case Commands.PRICE:
         return await getPricesFlex(args)
+      case Commands.HELP:
+        return instruction()
       default:
         return [
           {
