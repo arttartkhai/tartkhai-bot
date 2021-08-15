@@ -8,7 +8,7 @@
 
 ## Application Demo
 
-[](./demo-bot.gif)
+[demo video](./public/demo-bot.gif)
 
 ## Getting Started
 
@@ -31,7 +31,7 @@ for example
     ```
 
 3. after getting ngrok url(tunnel), put `https:{{your_tunnel_url}}/webhook/bot` into your channel's webhook at [Line developer console](https://developers.line.biz/console/)
-[](./webhook-setting.png)
+[webhook-setting](./public/webhook-setting.png)
 4. (optional) set up .env `DEBUG_MODE=true`. This will allow application showing log of every incoming event from line chat
 
 To get a local copy up and running follow these simple example steps.
