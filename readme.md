@@ -34,8 +34,6 @@ for example
     ![webhook-setting](./public/webhook-setting.png)
 5. (optional) set up .env `DEBUG_MODE=true`. This will allow application showing log of every incoming event from line chat
 
-To get a local copy up and running follow these simple example steps.
-
 
 ## Authors
 
