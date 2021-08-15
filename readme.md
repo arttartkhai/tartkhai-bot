@@ -8,7 +8,7 @@
 
 ## Application Demo
 
-[demo video](./public/demo-bot.gif)
+![demo video](./public/demo-bot.gif)
 
 ## Getting Started
 
@@ -23,16 +23,16 @@
       $ npm run dev
     ```
   
-
 2. run [ngrok](https://ngrok.com/) of application's port for a tunnel (default port is 8084, you can change by specify `PORT` in .env)
 for example
     ``` bash 
       $ ./ngrok http -region=ap 8084
     ```
 
-3. after getting ngrok url(tunnel), put `https:{{your_tunnel_url}}/webhook/bot` into your channel's webhook at [Line developer console](https://developers.line.biz/console/)
-[webhook-setting](./public/webhook-setting.png)
-4. (optional) set up .env `DEBUG_MODE=true`. This will allow application showing log of every incoming event from line chat
+3. after getting ngrok url(tunnel), put `https:{{your_tunnel_url}}/webhook/bot` into your channel's webhook 
+    at [Line developer console](https://developers.line.biz/console/)
+    ![webhook-setting](./public/webhook-setting.png)
+5. (optional) set up .env `DEBUG_MODE=true`. This will allow application showing log of every incoming event from line chat
 
 To get a local copy up and running follow these simple example steps.
 
