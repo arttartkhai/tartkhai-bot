@@ -2,8 +2,8 @@ import config from 'config/development'
 import { ILatestQuote, IMetadata } from 'types/services'
 import { CustomCoinData } from 'types/template'
 
-const formatNumber = (num: number): string => {
-  return num.toLocaleString(undefined, { maximumFractionDigits: 2 })
+const formatNumber = (num: number | null): string => {
+  return num ? num.toLocaleString(undefined, { maximumFractionDigits: 2 }) : '-'
 }
 
 // transform string to number for numStr that come from formatNumber fn
